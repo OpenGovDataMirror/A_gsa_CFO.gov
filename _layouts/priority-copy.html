@@ -1,0 +1,92 @@
+---
+
+layout: default
+title: Priority
+
+---
+
+<section class="usa-hero grid-container {{ page.type }}-page">
+    <div class="grid-row grid-gap">
+        <div class="grid-col-12 tablet:grid-col-auto tablet:grid-offset-1 text-center">
+            <img class="circle-card tablet:float-left" src="{{site.baseurl}}/assets/images/logos/{{ page.type }}.png"
+                alt="{{ page.type }}" />
+        </div>
+        <div class="tablet:grid-col-8 margin-left-2 margin-right-2">
+            <div class="priority-tag-line">
+                <h1 class="margin-0 font-ui-2xl text-normal">{{ page.title }}</h1>
+            </div>
+            <div>
+                <p class="margin-0 font-sans-md">{{ page.description1 }}</p>
+                {% if page.type == "financial-assistance" %}
+                <br>
+                <a class="margin-top-1 text-no-underline text-white margin-bottom-1 usa-button usa-button--secondary bg-red border-0 padding-2" href="{{site.baseurl}}/2021-compliance-supplement-vet-draft/">Read News Flash</a></div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--All icons and text for each priority area are referenced in the respective md file under prioritypages folder-->
+<section class="usa-graphic_list usa-section usa-prose clearfix">
+
+    <div class="grid-row clearfix grid-container priority-icons">
+
+        {% for icon in page.priority_icons %}
+        {% if page.number_of_icons == 4 %}
+        <div class="tablet:grid-col-3 text-center margin-y-10 padding-x-1">
+            {% endif %}
+            {% if page.number_of_icons == 3 %}
+            <div class="tablet:grid-col-4 text-center margin-y-10">
+                {% endif %}
+                {% if icon.url %}
+                <a href="{{ site.baseurl }}{{ icon.url }}" class="text-no-underline text-gray-70" style="display: inline-block;">
+                    {% else %}
+                    <a href="{{ icon.link }}" class="text-no-underline" style="display: inline-block;" {% if icon.id %} id="{{ icon.id }}" {% endif %}>
+                        {% endif %}
+                        <div class="circle-image picons bg-white">
+                            <img class="picon" src="{{site.baseurl}}{{ icon.logo }}" alt="{{ icon.name }} image" />
+                        </div>
+                        <p class="font-heading-md text-gray-70 text-no-underline">{{ icon.name }}</p>
+                    </a>
+            </div>
+            {% endfor %}
+        </div>
+
+</section>
+
+
+<div class="grid-container grid-gap">{{ content }}</div>
+
+
+<section class="grid-container grid-gap usa-graphic_list clearfix tabSection">
+
+    {% if page.type == "fdt" %}
+    {% include priority_fdt_sidenav.html %}
+    {% endif %}
+
+    {% if page.type == "fmt" %}
+    {% include priority_fmt_sidenav.html %}
+    {% endif %}
+
+    {% if page.type == "financial-assistance" %}
+    {% include priority_grants_sidenav.html %}
+    {% endif %}
+
+    {% if page.type == "erm" %}
+    {% include priority_erm_sidenav.html %}
+    {% endif %}
+
+    {% if page.type == "payment-integrity" %}
+    {% include priority_gpr_sidenav.html %}
+    {% endif %}
+
+    {% if page.type == "workforce-modernization" %}
+    {% include priority_workforce_sidenav.html %}
+    {% endif %}
+
+    {% if page.type == "arp" %}
+    {% include priority_arp_sidenav.html %}
+    {% endif %}
+
+</section>
